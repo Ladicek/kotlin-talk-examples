@@ -1,16 +1,16 @@
-package _03traits
+package _04interfaces
 
-trait Foo {
+interface Foo {
     fun foo(): String
 }
 
-trait Bar {
+interface Bar {
     fun bar(): String {
         return "bar"
     }
 }
 
-trait Baz {
+interface Baz {
     fun baz() = "baz"
 }
 
@@ -22,6 +22,6 @@ class Fubar : Foo, Bar, Baz {
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
     Fubar().fubar()
 }

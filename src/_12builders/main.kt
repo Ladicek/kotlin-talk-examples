@@ -1,19 +1,11 @@
-package _10builders
+package _12builders
 
 import java.util.ArrayList
 import java.util.Random
 
-fun data(build: Data.() -> Unit): Data {
-    val result = Data()
-    result.build()
-    return result
-}
+data class Value(val value: String)
 
-class Value(val value: String)
-
-class Item {
-    private val values: MutableList<Value> = ArrayList<Value>()
-
+data class Item(private val values: MutableList<Value> = ArrayList<Value>()) {
     fun value(value: String) {
         values.add(Value(value))
     }
@@ -23,9 +15,7 @@ class Item {
     }
 }
 
-class Data {
-    private val items: MutableList<Item> = ArrayList<Item>()
-
+data class Data(private val items: MutableList<Item> = ArrayList<Item>()) {
     fun item(build: Item.() -> Unit) {
         val result = Item()
         result.build()
@@ -33,7 +23,13 @@ class Data {
     }
 }
 
-fun main(args: Array<String>) {
+fun data(build: Data.() -> Unit): Data {
+    val result = Data()
+    result.build()
+    return result
+}
+
+fun main() {
     val d = data {
         item {
             value("foo")
@@ -50,8 +46,9 @@ fun main(args: Array<String>) {
 
         item {
             val r = Random().nextBoolean()
-            if (r) value("done 1") else value("done 2")
+            if (r) value("true") else value("false")
         }
     }
+
     println(d)
 }

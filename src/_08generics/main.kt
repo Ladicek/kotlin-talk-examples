@@ -1,21 +1,26 @@
-package _06generics
+package _08generics
 
-trait Producer<out T> {
+interface Producer<out T> {
     fun produce(): T
 }
 
-trait Consumer<in T>{
+interface Consumer<in T>{
     fun consume(t: T)
 }
 
-trait Holder<T> {
+interface Holder<T> {
     fun produce(): T
     fun consume(t: T)
 }
 
-fun use(h: Holder<out String>) {
-    h.produce()
-    //h.consume("")
+fun useOut(h: Holder<out String>) {
+    val x = h.produce()
+    //h.consume(x)
+}
+
+fun useIn(h: Holder<in String>) {
+    val x = h.produce()
+    //h.consume(x)
 }
 
 fun demo(a: Producer<String>, b: Producer<Any>,
@@ -28,6 +33,6 @@ fun demo(a: Producer<String>, b: Producer<Any>,
     //val n: Holder<Any> = e
     //val o: Holder<String> = f
 
-    use(e)
-    //use(f)
+    useOut(e)
+    useIn(f)
 }

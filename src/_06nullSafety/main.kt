@@ -1,19 +1,17 @@
-package _04nullSafety
+package _06nullSafety
 
 fun answer(): Int? {
     return 0b101010 // 0x2A
 }
 
-fun question(answer: Int) = "6 * 7 = $answer"
+fun questionForAnswer(answer: Int) = "6 * 7 = $answer"
 
-fun main(args: Array<String>) {
+fun main() {
     val answer = answer()
     if (answer != null) {
-        val question = question(answer)
+        val question = questionForAnswer(answer)
         println("$answer -> $question")
     }
-
-    answer?.times { println("Hi!") }
 
     val doubleAnswer = answer?.let { it * 2 }
     println(doubleAnswer)

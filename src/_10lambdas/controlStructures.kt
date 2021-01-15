@@ -1,9 +1,9 @@
-package _08lambdas
+package _10lambdas
 
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
 
-fun locked<T>(l: Lock, compute: () -> T): T {
+fun <T> withLock(l: Lock, compute: () -> T): T {
     l.lock()
     try {
         return compute()
@@ -12,7 +12,7 @@ fun locked<T>(l: Lock, compute: () -> T): T {
     }
 }
 
-fun Lock.locked<T>(compute: () -> T): T {
+fun <T> Lock.with(compute: () -> T): T {
     this.lock()
     try {
         return compute()
@@ -21,14 +21,14 @@ fun Lock.locked<T>(compute: () -> T): T {
     }
 }
 
-fun demo(args: Array<String>) {
-    val l = ReentrantLock()
+fun main() {
+    val lock = ReentrantLock()
 
-    val result = locked(l) {
+    val result1 = withLock(lock) {
         1
     }
 
-    val result2 = l.locked {
+    val result2 = lock.with {
         2
     }
 }

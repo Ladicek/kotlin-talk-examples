@@ -1,4 +1,4 @@
-package _02classes;
+package _03classes;
 
 public class PersonMutableJava {
     private String name;

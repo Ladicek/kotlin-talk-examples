@@ -1,7 +1,7 @@
 package _02functions
 
 fun p(message: String, prefix: String = "") {
-    println(message)
+    println("[$prefix] $message")
 }
 
 fun add(a: Int, b: Int) = a + b
